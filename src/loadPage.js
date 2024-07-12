@@ -18,8 +18,9 @@ export function loadPage(){
     }
     
     class Projects{
-        constructor(name){
+        constructor(name, desc){
             this.name = name;
+            this.desc = desc
             this.tasks = [];
         }
     
@@ -27,6 +28,10 @@ export function loadPage(){
             let t = new Todo(title, desc, dueDate, priority, isComplete)
             this.tasks.push(t);
             return t
+        }
+
+        deleteTodo(id){
+            return this.tasks = this.tasks.filter(taskTitle => taskTitle.title != id);
         }
     
         get getTasks(){
@@ -43,10 +48,14 @@ export function loadPage(){
             this.projects = []
         }
     
-        newProject(name){
-            let p = new Projects(name);
+        newProject(name, desc){
+            let p = new Projects(name, desc);
             this.projects.push(p);
             return p;
+        }
+
+        deleteItem(id){
+            return this.projects = this.projects.filter(projTitle => projTitle.name != id)
         }
     
         get getProjects(){
@@ -56,12 +65,18 @@ export function loadPage(){
     
     const test = new ProjectLib();
     
-    test.newProject('test project');
-    test.newProject('empty project');
+    test.newProject('test project', 'test description');
+    test.newProject('empty project', 'empty project test description');
+
+    
     
     test.projects[0].newTodo('Test title', 'this is a test', '07-12-24', 'high');
     test.projects[0].newTodo('Test 2', 'Test 2 description', '07-13-24', 'high');
     test.projects[0].tasks[0].changePriority('low');
+
+    // TEST TO DELETE
+    // test.deleteItem('empty project');
+    // test.projects[0].deleteTodo('Test 2');
     
     console.log(test.projects[0].getTasks);
     console.log(test.getProjects);
