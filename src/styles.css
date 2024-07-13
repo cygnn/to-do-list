@@ -1,0 +1,80 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: flex;
+}
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 15%;
+    padding:0 1rem;
+    background-color: antiquewhite;
+}
+
+.profile{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile-image{
+    margin-left: 1rem;
+    background-color: black;
+    border-radius: 16px;
+    width: 30px;
+    height: 30px;
+}
+
+.profile-name{
+    margin-left: 0.5rem ;
+}
+
+.project-list{
+    padding: 1rem;
+}
+
+.project-list-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-list-header > img {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    border: 0;
+}
+
+.project-list-title{
+    display: flex;
+    margin: 0;
+}
+
+.project-name{
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.project-name::before{
+    content: '#';
+    color: aqua;
+}
+
+.add-task{
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0 0 0 1rem;
+    cursor: pointer;
+}
+
+.add-task > img{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}

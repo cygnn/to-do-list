@@ -55,7 +55,7 @@ class ProjectLib{
     }
 }
 
-const test = new ProjectLib();
+export const test = new ProjectLib();
 
 test.newProject('test project');
 test.newProject('empty project');
@@ -73,3 +73,12 @@ console.log(test.getProjects);
 // console.log(test.tasks);
 // console.log(test.tasks[0].changeIsComplete());
 // console.log(test.getProjName);
+// export {
+//     changeIsComplete,
+//     changePriority,
+//     newTodo,
+//     getTasks,
+//     getProjName,
+//     newProject,
+//     getProjects,
+// }
