@@ -1,5 +1,5 @@
-import { loadPage } from "./loadPage";
-import { loadSideBar } from "./loadSideBar";
+import { loadPage } from "./components/loadPage";
+import { loadSideBar } from "./components/loadSideBar";
 import './styles.css'
 
 // loadPage();

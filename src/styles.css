@@ -78,3 +78,45 @@ body{
     height: 1.5rem;
     margin-right: 0.5rem;
 }
+
+.content{
+    width: 85%;
+    display: flex;
+    flex-direction: column;   
+}
+
+.project-title{
+    padding-left: 3rem;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+
+.task-container{
+    padding: 0 3.5rem 6rem 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tasks{
+    width: 50%;
+    display: flex;
+    margin: 0 0 0.5rem;
+    border-bottom: 1px solid black;
+    padding: 0.5rem;
+}
+
+.task-content{
+    margin-left: 0.5rem;
+    width: 100%;
+}
+
+.task-title{
+    margin: 0 0 0.5rem;
+}
+
+.desc-text{
+    margin: 0 0 0.5rem 1rem;
+}

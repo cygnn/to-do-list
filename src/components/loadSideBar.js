@@ -1,6 +1,7 @@
-import addSvg from './imgs/plus-square-svgrepo-com.svg';
+import addSvg from '../imgs/plus-square-svgrepo-com.svg';
 import { test } from './todo';
-import img1 from './imgs/add.svg'
+import img1 from '../imgs/add.svg'
+import { loadProject } from './loadProject';
 export function loadSideBar(){
     const body = document.querySelector('body');
 
@@ -44,10 +45,23 @@ export function loadSideBar(){
     let projItems = test.getProjects;
 
     projItems.forEach(project => {
+        const projectbtn = document.createElement('button');
+        projectbtn.classList.add('project-button');
+
         const projectName = document.createElement('p');
         projectName.classList.add('project-name');
         projectName.textContent = project.getProjName;
-        projects.appendChild(projectName);
+
+        projectbtn.addEventListener('click', function(){
+            const content = document.querySelector('.content')
+            if(content !== null){
+                content.remove();
+            }
+            loadProject(projectName.textContent);
+        });
+
+        projectbtn.appendChild(projectName);
+        projects.appendChild(projectbtn);
     });
 
     projectList.appendChild(projectListHeader);
