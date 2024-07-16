@@ -9,6 +9,14 @@ class Todo{
         this.isComplete = false;
     }
 
+    changeTitle(newTitle){
+        this.title = newTitle;
+    }
+
+    changeDesc(newDesc){
+        this.desc = newDesc;
+    }
+
     changeIsComplete(){
         this.isComplete = !this.isComplete;
     }
@@ -16,6 +24,8 @@ class Todo{
     changePriority(newPriority){
         this.priority = newPriority;
     }
+
+    
 }
 
 class Projects{
@@ -29,6 +39,16 @@ class Projects{
         this.tasks.push(t);
         return t
     }
+
+    // editTodo(title,newTitle, newDesc, newDueDate, newPriority){
+    //     let index = this.tasks.indexOf(title);
+    //     if(index > 0 && index < this.tasks.length){
+    //         tasks[index].title = newTitle;
+    //         tasks[index].desc = newDesc;
+    //         tasks[index].dueDate = newDueDate;
+    //         tasks[index].priority = newPriority;
+    //     }
+    // }
 
     get getTasks(){
         return this.tasks;

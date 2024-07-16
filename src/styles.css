@@ -109,6 +109,7 @@ body{
 }
 
 .task-content{
+    position: relative;
     margin-left: 0.5rem;
     width: 100%;
 }
@@ -119,4 +120,27 @@ body{
 
 .desc-text{
     margin: 0 0 0.5rem 1rem;
+}
+
+.edit-btn, .edit-btn > img, .drop, .drop > img{
+    cursor: pointer;
+    background: none;
+    border: 0;
+    padding: 0;
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.btn-div{
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    gap: 0.5rem;
+
+}
+
+.edit-btn:hover, .drop:hover{
+    background-color: rgb(194, 191, 191);
 }
