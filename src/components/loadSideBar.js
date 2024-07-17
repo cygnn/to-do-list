@@ -42,6 +42,7 @@ export function loadSideBar(){
     projectListHeader.appendChild(projectAdd);
 
     const projects = document.createElement('div');
+    projects.classList.add('projects');
     let projItems = test.getProjects;
 
     projItems.forEach(project => {

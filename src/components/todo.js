@@ -25,6 +25,10 @@ class Todo{
         this.priority = newPriority;
     }
 
+    changeDueDate(newDuedate){
+        this.dueDate = newDuedate;
+    }
+
     
 }
 
@@ -38,6 +42,11 @@ class Projects{
         let t = new Todo(title, desc, dueDate, priority, isComplete)
         this.tasks.push(t);
         return t
+    }
+
+    delTodo(title){
+        const index = this.tasks.findIndex(x => x.title === title);
+        this.tasks.splice(index, 1);
     }
 
     // editTodo(title,newTitle, newDesc, newDueDate, newPriority){

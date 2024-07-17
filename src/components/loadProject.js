@@ -1,7 +1,11 @@
 import { test } from "./todo";
 import edit from "../imgs/edit.svg";
 import dropdown from "../imgs/dropdown.svg"
+import del from "../imgs/del.svg";
 import { editmodal } from "./editmodal";
+import addImgSrc from '../imgs/add.svg';
+import { addForm } from "./addForm";
+
 export function loadProject(projectName){
     const body = document.querySelector('body');
     const content = document.createElement('div');
@@ -25,6 +29,7 @@ export function loadProject(projectName){
 
     const projectTitle = document.createElement('h1');
     const projObj = test.projects.filter(projName => projName.name === projectName)
+    const projIndex = test.projects.findIndex(x => x.name === projectName);
     projectTitle.textContent = projectName;
     projectTitleDiv.appendChild(projectTitle);
 
@@ -73,15 +78,22 @@ export function loadProject(projectName){
 
             const editImg = new Image();
             editImg.src = edit;
+            editBtn.appendChild(editImg);
+
+            const delBtn = document.createElement('button');
+            delBtn.classList.add('delete-btn');
+
+            const delImg = new Image();
+            delImg.src = del;
+            delBtn.appendChild(delImg);
+
+            btnDiv.appendChild(editBtn);
+            btnDiv.appendChild(delBtn);
+            btnDiv.appendChild(dropdownBtn);
 
             editBtn.addEventListener('click', function(){
                 editmodal(itemtasks, projectName)
             })
-
-            editBtn.appendChild(editImg);
-            btnDiv.appendChild(editBtn);
-            btnDiv.appendChild(dropdownBtn);
-
 
             drop.addEventListener('click', () => {
                 if(desc.hasChildNodes()){
@@ -99,6 +111,16 @@ export function loadProject(projectName){
                 }
             })
 
+            delBtn.addEventListener('click', () => {   
+                test.projects[projIndex].delTodo(itemtasks.title)
+                if(content !== null){
+                    content.remove();
+                }
+                loadProject(projectName);
+                
+            })
+
+
             
     
             taskContent.appendChild(taskTitle);
@@ -110,6 +132,22 @@ export function loadProject(projectName){
             tasksContainer.appendChild(tasks);
         })
     });
+    const addBtn = document.createElement('button');
+    addBtn.classList.add('add-button');
+
+    const addImg = new Image()
+    addImg.src = addImgSrc;
+    addBtn.appendChild(addImg);
+
+    const p = document.createElement('span');
+    p.textContent = 'Add task';
+    addBtn.appendChild(p);
+
+    addBtn.addEventListener('click', () => {
+        addForm(projIndex);
+    });
+
+    tasksContainer.appendChild(addBtn);
 
     content.appendChild(contentHeader);
     content.appendChild(projectTitleDiv);
