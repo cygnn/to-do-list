@@ -2,7 +2,15 @@ import addSvg from '../imgs/plus-square-svgrepo-com.svg';
 import { test } from './todo';
 import img1 from '../imgs/add.svg'
 import { loadProject } from './loadProject';
+import { addProj } from './addProj';
+import delBtn from '../imgs/del.svg';
+import { deleteProject } from './deleteProject';
+
 export function loadSideBar(){
+    const content = document.querySelector('.content')
+        if(content !== null){
+            content.remove();
+        }
     const body = document.querySelector('body');
 
     const sideBar = document.createElement('div');
@@ -41,11 +49,18 @@ export function loadSideBar(){
     projectListHeader.appendChild(projectListTitle);
     projectListHeader.appendChild(projectAdd);
 
+    projectAdd.addEventListener('click', () => {
+        addProj(sideBar);
+    });
+
     const projects = document.createElement('div');
     projects.classList.add('projects');
     let projItems = test.getProjects;
 
     projItems.forEach(project => {
+        const projectItem = document.createElement('div');
+        projectItem.classList.add('project-item');
+
         const projectbtn = document.createElement('button');
         projectbtn.classList.add('project-button');
 
@@ -61,29 +76,29 @@ export function loadSideBar(){
             loadProject(projectName.textContent);
         });
 
+        const delProjBtn = document.createElement('button');
+        delProjBtn.classList.add('delete-btn');
+
+        const delImg = new Image();
+        delImg.src = delBtn;
+
+        delProjBtn.appendChild(delImg);
+
+        delProjBtn.addEventListener('click', () =>{
+            deleteProject(projectName.textContent, sideBar)
+        })
+
         projectbtn.appendChild(projectName);
-        projects.appendChild(projectbtn);
+        projectItem.appendChild(projectbtn);
+        projectItem.appendChild(delProjBtn);
+        projects.appendChild(projectItem)
     });
 
     projectList.appendChild(projectListHeader);
     projectList.appendChild(projects);
 
-    const addTask = document.createElement('button');
-    addTask.classList.add('add-task');
-    
-    const addImg = new Image();
-    addImg.src = img1;
-
-    const addText = document.createElement('span')
-    addText.textContent = 'Add Task';
-
-    addTask.appendChild(addImg);
-    addTask.appendChild(addText);
-
-
     sideBar.appendChild(profile)
     sideBar.appendChild(projectList);
-    sideBar.appendChild(addTask);
 
     body.appendChild(sideBar);
 }

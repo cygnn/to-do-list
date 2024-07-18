@@ -74,4 +74,8 @@ export function addForm(projectIndex){
         }
         loadProject(test.projects[projectIndex].getProjName);
     })
+
+    cancelbtn.addEventListener('click', () => {
+        form.remove();
+    })
 }

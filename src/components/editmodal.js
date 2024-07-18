@@ -91,7 +91,7 @@ export function editmodal(obj, projectName){
 
         
         dialog.close();
-        const content = document.querySelector(".content");
+        const content = document.querySelector(".content"); //MAKE A SEPERATE FILE FOR THIS
         if(content !== null){
             content.remove();
         }
@@ -104,6 +104,7 @@ export function editmodal(obj, projectName){
         dialog.close();
     })
 
+    //NO USE HERE
     const setError = (element,message) => {
         const inputControl = element.parentElement;
         const errorDisplay = inputControl.querySelector('.error');

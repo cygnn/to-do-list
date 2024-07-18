@@ -79,6 +79,11 @@ class ProjectLib{
         return p;
     }
 
+    deleteProject(name){
+        const index = this.projects.findIndex(x => x.name === name);
+        this.projects.splice(index, 1);
+    }
+
     get getProjects(){
         return this.projects;
     }
