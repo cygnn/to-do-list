@@ -1,10 +1,13 @@
 import addSvg from '../imgs/plus-square-svgrepo-com.svg';
 import { test } from './todo';
-import img1 from '../imgs/add.svg'
 import { loadProject } from './loadProject';
 import { addProj } from './addProj';
 import delBtn from '../imgs/del.svg';
 import { deleteProject } from './deleteProject';
+import { storeData } from './storeData';
+import { retrieveData } from './retrieveData';
+import { restoreFunc } from './restoreFunc';
+import { loadHome } from './loadHome';
 
 export function loadSideBar(){
     const content = document.querySelector('.content')
@@ -19,18 +22,12 @@ export function loadSideBar(){
     const profile = document.createElement('div');
     profile.classList.add('profile');
 
-    const profileImg = document.createElement('div');
-    profileImg.classList.add('profile-image');
-
-    const img = document.createElement('img');
-    
-    profileImg.appendChild(img);
-
     const profileName = document.createElement('p');
     profileName.textContent = 'Tododo';
     profileName.classList.add('profile-name');
 
-    profile.appendChild(profileImg);
+    profileName.addEventListener('click', loadHome);
+
     profile.appendChild(profileName);
 
     const projectList = document.createElement('div');
@@ -55,7 +52,13 @@ export function loadSideBar(){
 
     const projects = document.createElement('div');
     projects.classList.add('projects');
+    let obj_deser = retrieveData();
+    console.log(obj_deser);
+    restoreFunc(obj_deser.projects);
+    console.log(test);
     let projItems = test.getProjects;
+
+    console.log(projItems);
 
     projItems.forEach(project => {
         const projectItem = document.createElement('div');

@@ -1,4 +1,5 @@
 import { loadSideBar } from "./loadSideBar";
+import { storeData } from "./storeData";
 import { test } from "./todo";
 export function addProj(removeElement){
     const body = document.querySelector('body');
@@ -42,6 +43,7 @@ export function addProj(removeElement){
         e.preventDefault();
 
         test.newProject(projName.value);
+        storeData(test);
         loadSideBar();
         if(removeElement !== null){
             removeElement.remove();

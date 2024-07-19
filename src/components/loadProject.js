@@ -5,6 +5,7 @@ import del from "../imgs/del.svg";
 import { editmodal } from "./editmodal";
 import addImgSrc from '../imgs/add.svg';
 import { addForm } from "./addForm";
+import { storeData } from "./storeData";
 
 export function loadProject(projectName){
     const body = document.querySelector('body');
@@ -41,6 +42,7 @@ export function loadProject(projectName){
             console.log(itemtasks);
             const tasks = document.createElement('div');
             tasks.classList.add('tasks');
+            tasks.classList.add(itemtasks.priority);
     
             const checkboxDiv = document.createElement('div');
             checkboxDiv.classList.add('checkbox-div');
@@ -48,6 +50,17 @@ export function loadProject(projectName){
             const checkbox = document.createElement('input');
             checkbox.setAttribute('type', 'checkbox');
             checkboxDiv.appendChild(checkbox);
+
+            checkbox.addEventListener('change', function() {
+                itemtasks.changeIsComplete();
+                if (itemtasks.isComplete === true) {
+                    taskContent.classList.add('checked')
+                  console.log("Checkbox is checked..");
+                } else {
+                    taskContent.classList.add('unchecked')
+                  console.log("Checkbox is not checked..");
+                }
+              });
     
             const taskContent = document.createElement('div');
             taskContent.classList.add('task-content');
@@ -113,6 +126,7 @@ export function loadProject(projectName){
 
             delBtn.addEventListener('click', () => {   
                 test.projects[projIndex].delTodo(itemtasks.title)
+                storeData(test);
                 if(content !== null){
                     content.remove();
                 }
@@ -120,9 +134,6 @@ export function loadProject(projectName){
                 
             })
 
-
-            
-    
             taskContent.appendChild(taskTitle);
             taskContent.appendChild(dueDate);
             taskContent.appendChild(btnDiv);

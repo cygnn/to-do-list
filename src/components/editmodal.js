@@ -1,11 +1,21 @@
 import { loadProject } from "./loadProject";
+import { storeData } from "./storeData";
 import { test } from "./todo";
 
 export function editmodal(obj, projectName){
     const body = document.querySelector('body');
 
     const dialog = document.createElement('dialog');
+    dialog.classList.add('edit-modal');
+
+    const h1 = document.createElement('h1');
+    h1.classList.add('edit');
+    h1.textContent = 'Edit task'
+
+    dialog.appendChild(h1);
+
     const form = document.createElement('form');
+    form.classList.add('modal-form');
 
     const projIndex = test.projects.findIndex(x => x.name === projectName);
     const taskIndex = test.projects[projIndex].tasks.findIndex(x => x.title === obj.title);
@@ -30,8 +40,9 @@ export function editmodal(obj, projectName){
 
     const taskDescContainer = document.createElement('div');
     taskDescContainer.classList.add('input-control');
-    const taskDesc = document.createElement('input'); //MAKE THIS INTO TEXT AREA
-    taskDesc.type = 'text';
+    const taskDesc = document.createElement('textarea'); //MAKE THIS INTO TEXT AREA
+    taskDesc.cols = '40';
+    taskDesc.rows = '5';
     taskDesc.name = 'taskDescription';
     taskDesc.value = obj.desc;
     taskDesc.required = true
@@ -55,6 +66,7 @@ export function editmodal(obj, projectName){
 
     const priorityContainer = document.createElement('div');
     const priority = document.createElement('select');
+    priority.classList.add('priority');
     
     const options = ['Low', 'Medium', 'High'];
     options.forEach(function(optionText){
@@ -67,6 +79,7 @@ export function editmodal(obj, projectName){
     priorityContainer.appendChild(priority);
 
     const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-div');
     const submitBtn = document.createElement('button');
     submitBtn.type = 'submit';
     submitBtn.value = 'Submit';
@@ -91,17 +104,19 @@ export function editmodal(obj, projectName){
 
         
         dialog.close();
+        dialog.remove();
         const content = document.querySelector(".content"); //MAKE A SEPERATE FILE FOR THIS
         if(content !== null){
             content.remove();
         }
-        
+        storeData(test);
         loadProject(projectName);
     })
 
     cancelBtn.addEventListener('click', () =>{
         event.preventDefault();
         dialog.close();
+        dialog.remove();
     })
 
     //NO USE HERE

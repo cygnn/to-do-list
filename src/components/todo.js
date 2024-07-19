@@ -91,15 +91,15 @@ class ProjectLib{
 
 export const test = new ProjectLib();
 
-test.newProject('test project');
-test.newProject('empty project');
+// test.newProject('test project');
+// test.newProject('empty project');
 
-test.projects[0].newTodo('Test title', 'this is a test', '07-12-24', 'high');
-test.projects[0].newTodo('Test 2', 'Test 2 description', '07-13-24', 'high');
-test.projects[0].tasks[0].changePriority('low');
+// test.projects[0].newTodo('Test title', 'this is a test', '07-12-24', 'high');
+// test.projects[0].newTodo('Test 2', 'Test 2 description', '07-13-24', 'high');
+// test.projects[0].tasks[0].changePriority('low');
 
-console.log(test.projects[0].getTasks);
-console.log(test.getProjects);
+// console.log(test.projects[0].getTasks);
+// console.log(test.getProjects);
 
 
 // test.projects[0].changePriority('low');
