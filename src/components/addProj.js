@@ -1,3 +1,4 @@
+import { loadHome } from "./loadHome";
 import { loadSideBar } from "./loadSideBar";
 import { storeData } from "./storeData";
 import { test } from "./todo";
@@ -45,6 +46,7 @@ export function addProj(removeElement){
         test.newProject(projName.value);
         storeData(test);
         loadSideBar();
+        loadHome();
         if(removeElement !== null){
             removeElement.remove();
         }

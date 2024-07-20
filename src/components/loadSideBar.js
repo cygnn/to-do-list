@@ -16,6 +16,7 @@ export function loadSideBar(){
         }
     const body = document.querySelector('body');
 
+
     const sideBar = document.createElement('div');
     sideBar.classList.add('side-bar');
 
@@ -54,7 +55,10 @@ export function loadSideBar(){
     projects.classList.add('projects');
     let obj_deser = retrieveData();
     console.log(obj_deser);
-    restoreFunc(obj_deser.projects);
+    if(test.projects.length === 0){
+        restoreFunc(obj_deser.projects);
+    }
+    
     console.log(test);
     let projItems = test.getProjects;
 

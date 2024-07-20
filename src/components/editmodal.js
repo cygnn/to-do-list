@@ -57,6 +57,7 @@ export function editmodal(obj, projectName){
     const dueDate = document.createElement('input');
     dueDate.type = 'date';
     dueDate.name = 'dueDate';
+    dueDate.value = obj.dueDate;
     dueDate.required = true;
     const error3 = document.createElement('div');
     error3.classList.add('error');

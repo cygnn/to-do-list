@@ -6,6 +6,8 @@ import { editmodal } from "./editmodal";
 import addImgSrc from '../imgs/add.svg';
 import { addForm } from "./addForm";
 import { storeData } from "./storeData";
+import { formatDistanceStrict } from "date-fns";
+import { loadHome } from "./loadHome";
 
 export function loadProject(projectName){
     const body = document.querySelector('body');
@@ -21,6 +23,8 @@ export function loadProject(projectName){
     const myProject = document.createElement('span');
     myProject.classList.add('header-text');
     myProject.textContent = 'My Projects';
+
+    headerButton.addEventListener('click', loadHome)
 
     headerButton.appendChild(myProject);
     contentHeader.appendChild(headerButton);
@@ -56,9 +60,11 @@ export function loadProject(projectName){
                 if (itemtasks.isComplete === true) {
                     taskContent.classList.add('checked')
                   console.log("Checkbox is checked..");
+                    taskContent.classList.remove('unchecked')
                 } else {
                     taskContent.classList.add('unchecked')
                   console.log("Checkbox is not checked..");
+                    taskContent.classList.remove('checked');
                 }
               });
     
@@ -71,10 +77,25 @@ export function loadProject(projectName){
     
             const dueDate = document.createElement('span');
             dueDate.classList.add('due-date');
-            dueDate.textContent = itemtasks.dueDate;
+            const result = formatDistanceStrict(new Date(), itemtasks.dueDate, {
+                unit: 'day'
+            });
+            let due;
+            if (result === '0 days'){
+                due = `Due in : Today`
+            }
+            else{
+                due = `Due in : ${result}`;
+            }
+            dueDate.textContent = due;
+            console.log(result);
 
             const desc = document.createElement('div');
             desc.classList.add('description');
+            const descText = document.createElement('p');
+            descText.classList.add('desc-text');
+            descText.textContent = itemtasks.desc;
+            desc.appendChild(descText);
 
             const btnDiv = document.createElement('div');
             btnDiv.classList.add('btn-div');
@@ -109,18 +130,11 @@ export function loadProject(projectName){
             })
 
             drop.addEventListener('click', () => {
-                if(desc.hasChildNodes()){
-                    while(desc.hasChildNodes()){
-                        desc.removeChild(desc.firstChild);
-                    }
+                if(desc.classList.contains('drop-open')){
+                    desc.classList.remove("drop-open");
                 }
-                else{
-                    const descText = document.createElement('p');
-                    descText.classList.add('desc-text');
-                    descText.textContent = itemtasks.desc;
-                    desc.appendChild(descText);
-    
-                    taskContent.insertBefore(desc, dueDate);
+                else {
+                    desc.classList.add('drop-open');
                 }
             })
 
@@ -135,6 +149,7 @@ export function loadProject(projectName){
             })
 
             taskContent.appendChild(taskTitle);
+            taskContent.appendChild(desc)
             taskContent.appendChild(dueDate);
             taskContent.appendChild(btnDiv);
     

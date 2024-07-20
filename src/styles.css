@@ -121,6 +121,15 @@ dialog{
     flex-direction: column;   
 }
 
+.content-body{
+    padding: 1rem;
+    margin-left: 1rem;
+}
+
+.content-item{
+    margin-bottom: 1rem;
+}
+
 .content-header{
     padding: 0.5rem 0 0 1rem;
 }
@@ -172,6 +181,24 @@ dialog{
 
 .task-title{
     margin: 0 0 0.5rem;
+}
+
+.description{
+    display: none;
+}
+
+.drop-open{
+    display: block;
+    animation: open 0.3s ease-in-out forwards;
+}
+
+@keyframes open {
+    0% {
+        transform: scaleY(0)
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }
 
 .desc-text{
