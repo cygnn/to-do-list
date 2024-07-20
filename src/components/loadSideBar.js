@@ -53,6 +53,9 @@ export function loadSideBar(){
 
     const projects = document.createElement('div');
     projects.classList.add('projects');
+
+    storeData(test);
+
     let obj_deser = retrieveData();
     console.log(obj_deser);
     if(test.projects.length === 0){
